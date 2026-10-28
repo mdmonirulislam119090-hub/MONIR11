@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monir Topup - বিশ্বস্ত ও দ্রুত গেম টপ-আপ</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #070b19;
+            --bg-card: #0d152d;
+            --primary: #00bcd4;
+            --primary-glow: rgba(0, 188, 212, 0.4);
+            --accent: #ff9800;
+            --success: #4caf50;
+            --text-main: #ffffff;
+            --text-muted: #8a99ad;
+            --bkash: #e2136e;
+            --nagad: #f34f22;
+            --rocket: #8c3494;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Container Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 1. Premium Navigation Bar */
+        header {
+            background: rgba(13, 21, 45, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo-area i {
+            color: var(--primary);
+            font-size: 26px;
+            filter: drop-shadow(0 0 8px var(--primary));
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            box-shadow: 0 0 8px var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: #fff;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--primary-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 180, 219, 0.6);
+        }
+
+        /* 2. Hero Banner Section */
+        .hero-section {
+            background: radial-gradient(circle at top right, rgba(0, 188, 212, 0.15), transparent 60%), 
+                        linear-gradient(180deg, #091024 0%, #050814 100%);
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .hero-badge {
+            background: rgba(0, 188, 212, 0.1);
+            border: 1px solid rgba(0, 188, 212, 0.2);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffffff, #00bcd4, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 3. Feature Info Ribbon */
+        .feature-ribbon {
+            background: #0b1226;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 0;
+        }
+
+        .feature-wrapper {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            font-size: 20px;
+            filter: drop-shadow(0 0 5px var(--primary-glow));
+        }
+
+        /* Main Grid Content */
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        /* 4. Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 188, 212, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 152, 0, 0.15);
+            border: 1px solid rgba(255, 152, 0, 0.3);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .product-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+            filter: drop-shadow(0 4px 10px var(--primary-glow));
+        }
+
+        .product-card.monthly .product-icon {
+            color: #e040fb;
+            filter: drop-shadow(0 4px 10px rgba(224, 64, 251, 0.4));
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .product-features li {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-features li i {
+            color: var(--success);
+            font-size: 12px;
+        }
+
+        .price-select-box {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #fff;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .price-select-box option {
+            background: var(--bg-card);
+        }
+
+        .buy-btn {
+            background: rgba(0, 188, 212, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--text-main);
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .buy-btn:hover {
+            background: var(--primary);
+            box-shadow: 0 5px 15px var(--primary-glow);
+            color: #000;
+        }
+
+        /* 5. Offer & Payment Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .giveaway-card {
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(233, 30, 99, 0.1));
+            border: 1px solid rgba(255, 152, 0, 0.2);
+            position: relative;
+        }
+
+        .giveaway-title {
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .giveaway-text {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Auto Payment Widget */
+        .payment-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .pay-method {
+            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 12px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .pay-method.bkash { color: var(--bkash); border-color: rgba(226, 19, 110, 0.2); }
+        .pay-method.nagad { color: var(--nagad); border-color: rgba(243, 79, 34, 0.2); }
+        .pay-method.rocket { color: var(--rocket); border-color: rgba(140, 52, 148, 0.2); }
+
+        .pay-method:hover, .pay-method.active {
+            transform: scale(1.05);
+            background: rgba(255,255,255,0.03);
+        }
+        .pay-method.bkash.active { background: var(--bkash); color: #fff; box-shadow: 0 0 10px rgba(226, 19, 110, 0.4); }
+        .pay-method.nagad.active { background: var(--nagad); color: #fff; box-shadow: 0 0 10px rgba(243, 79, 34, 0.4); }
+        .pay-method.rocket.active { background: var(--rocket); color: #fff; box-shadow: 0 0 10px rgba(140, 52, 148, 0.4); }
+
+        /* Order Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 8, 20, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            position: relative;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+        }
+
+        .modal-header h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .modal-body {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+
+        .summary-box {
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .confirm-btn {
+            background: var(--primary);
+            color: #000;
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .confirm-btn:hover {
+            background: #00e5ff;
+        }
+
+        /* Admin Trigger Simulation */
+        .admin-sim-bar {
+            background: #1a233a;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .admin-sim-bar button {
+            background: var(--accent);
+            border: none;
+            padding: 2px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Admin Panel Simulation Header -->
+    <div class="admin-sim-bar">
+        <span>💡 ডায়মন্ডের দাম লাইভ পরিবর্তন দেখতে চান?</span>
+        <button onclick="simulatePriceChange()">অ্যাডমিন প্যানেল সিমুলেশন</button>
+    </div>
+
+    <!-- 1. Premium Navigation Bar -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo-area">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="logo-text">MONIR <span>TOPUP</span></div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Offers</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+            <button class="login-btn"><i class="fa-regular fa-user"></i> Login</button>
+        </div>
+    </header>
+
+    <!-- 2. Hero Banner Section -->
+    <section class="hero-section">
+        <div class="container">
+            <span class="hero-badge"><i class="fa-solid fa-bolt"></i> Instant Delivery</span>
+            <h1 class="hero-title">বিশ্বস্ত ও দ্রুত গেম টপ-আপ</h1>
+            <p class="hero-subtitle">দামে কম, মানে সেরা এবং অফিশিয়াল গেমিং কারেন্সি খুব সহজেই টপ-আপ করুন আমাদের সাথে।</p>
+        </div>
+    </section>
+
+    <!-- 3. Feature Info Ribbon -->
+    <div class="feature-ribbon">
+        <div class="container feature-wrapper">
+            <div class="feature-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>১০০% নিরাপদ</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span>দ্রুত ডেলিভারি</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-headset"></i>
+                <span>২৪/৭ সাপোর্ট</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Space -->
+    <main class="container main-content">
+        <div class="layout-grid">
+            
+            <!-- Left Side: 4. Product Grid -->
+            <section>
+                <h2 class="section-title">পপুলার প্যাকেজ সমূহ</h2>
+                <div class="product-grid">
+                    
+                    <!-- Weekly Monthly Card -->
+                    <div class="product-card monthly">
+                        <span class="product-badge">🔥 সেরা ডিল</span>
+                        <div class="product-icon"><i class="fa-solid fa-gem"></i></div>
+                        <h3 class="product-title">Weekly Monthly</h3>
+                        <ul class="product-features">
+                            <li><i class="fa-solid fa-check"></i> ১ সপ্তাহের মেম্বারশিপ বা ১ মাস</li>
+                            <li><i class="fa-solid fa-check"></i> ইন-গেম রিওয়ার্ড ও ডায়মন্ড ক্লেইম</li>
+                            <li><i class="fa-solid fa-check"></i> আইডি পাসওয়ার্ড বা UID এর মাধ্যমে</li>
+                        </ul>
+                        <select class="price-select-box" id="monthly-select" onchange="updatePrice('monthly')">
+                            <option value="160">Weekly Membership — ৳১৬০</option>
+                            <option value="790">Monthly Membership — ৳৭৯০</option>
+                            <option value="950">Combo (Weekly + Monthly) — ৳৯৫offset</option>
+                        </select>
+                        <button class="buy-btn" onclick="openOrderModal('Weekly Monthly', 'monthly-select')">
+                            <i class="fa-solid fa-cart-shopping"></i> <span id="monthly-btn-text">Top-Up Now (৳১৬০)</span>
+                        </button>
+                    </div>
+
+                    <!-- Weekly Light Card -->
+                    <div class="product-card light">
+                        <span class="product-badge">⚡ ইনস্ট্যান্ট</span>
+                        <div class="product-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 class="product-title">Weekly Light</h3>
+                        <ul class="product-features">
+                            <li><i class="fa-solid fa-check"></i> দ্রুত সুপার লাইট মেম্বারশিপ</li>
+                            <li><i class="fa-solid fa-check"></i> শুধু মাত্র প্লেয়ার UID প্রয়োজন</li>
+                            <li><i class="fa-solid fa-check"></i> ৫ মিনিটের মধ্যে ডেলিভারি নিশ্চয়তা</li>
+                        </ul>
+                        <select class="price-select-box" id="light-select" onchange="updatePrice('light')">
+                            <option value="145">Weekly Light Single — ৳১৪৫</option>
+                            <option value="280">Weekly Light Double — ৳২৮০</option>
+                            <option value="550">Weekly Light 4X Multi — ৳৫৫offset</option>
+                        </select>
+                        <button class="buy-btn" onclick="openOrderModal('Weekly Light', 'light-select')">
+                            <i class="fa-solid fa-cart-shopping"></i> <span id="light-btn-text">Top-Up Now (৳১৪৫)</span>
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Right Side: 5. Offer & Payment Sidebar -->
+            <aside class="sidebar">
+                
+                <!-- Giveaway & WhatsApp Card -->
+                <div class="sidebar-card giveaway-card">
+                    <h3 class="giveaway-title"><i class="fa-solid fa-gift"></i> গিভওয়ে ও সকল অফার</h3>
+                    <p class="giveaway-text">আমাদের প্রতিদিনের স্পেশাল ডিসকাউন্ট, গিভওয়ে ইভেন্ট এবং মেগা অফার সম্পর্কে সবার আগে জানতে আমাদের অফিসিয়াল হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন।</p>
+                    <a href="https://wa.me/#" target="_blank" class="whatsapp-btn">
+                        <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন!
+                    </a>
+                </div>
+
+                <!-- Auto Payment Widget -->
+                <div class="sidebar-card">
+                    <h3 class="payment-title"><i class="fa-solid fa-credit-card"></i> Auto Payment Method</h3>
+                    <p class="giveaway-text" style="margin-bottom: 12px;">অর্ডার করার সময় আপনার পছন্দের পেমেন্ট মেথডটি নির্বাচন করুন:</p>
+                    <div class="payment-methods">
+                        <div class="pay-method bkash active" onclick="selectPayment('bkash')">bKash</div>
+                        <div class="pay-method nagad" onclick="selectPayment('nagad')">Nagad</div>
+                        <div class="pay-method rocket" onclick="selectPayment('rocket')">Rocket</div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- Interactive Order Modal Form -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <div class="modal-header">
+                <h3 id="modal-product-title">প্যাকেজ টপ-আপ</h3>
+                <p style="color: var(--text-muted); font-size: 14px;">অর্ডারটি সম্পন্ন করতে সঠিক তথ্য দিন</p>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="player-id">Player UID / Game ID</label>
+                    <input type="text" id="player-id" class="form-control" placeholder="যেমন: 123456789" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone-number">যোগাযোগের মোবাইল নাম্বার</label>
+                    <input type="tel" id="phone-number" class="form-control" placeholder="01XXXXXXXXX" required>
+                </div>
+                <div class="summary-box">
+                    <div>পণ্য: <span id="summary-name" style="font-weight: bold; color: #fff;">-</span></div>
+                    <div>মোট মূল্য: <span id="summary-price" style="font-weight: bold; color: var(--accent);">-</span></div>
+                    <div>পেমেন্ট গেটওয়ে: <span id="summary-gateway" style="font-weight: bold; color: #fff; text-transform: uppercase;">bKash</span></div>
+                </div>
+                <button class="confirm-btn" onclick="submitOrder()">কনফার্ম অর্ডার</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript For Interactivity -->
+    <script>
+        let selectedGateway = 'bkash';
+
+        function updatePrice(type) {
+            const select = document.getElementById(type + '-select');
+            const price = select.value;
+            const btnText = document.getElementById(type + '-btn-text');
+            btnText.innerText = `Top-Up Now (৳${price})`;
+        }
+
+        function selectPayment(method) {
+            document.querySelectorAll('.pay-method').forEach(el => el.classList.remove('active'));
+            document.querySelector('.pay-method.' + method).classList.add('active');
+            selectedGateway = method;
+            document.getElementById('summary-gateway').innerText = method;
+        }
+
+        function openOrderModal(productName, selectId) {
+            const select = document.getElementById(selectId);
+            const selectedText = select.options[select.selectedIndex].text;
+            const price = select.value;
+
+            document.getElementById('modal-product-title').innerText = productName + ' অর্ডার ফর্ম';
+            document.getElementById('summary-name').innerText = selectedText;
+            document.getElementById('summary-price').innerText = `৳${price}`;
+            document.getElementById('summary-gateway').innerText = selectedGateway;
+            
+            document.getElementById('orderModal').classList.add('open');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('open');
+        }
+
+        function submitOrder() {
+            const uid = document.getElementById('player-id').value;
+            const phone = document.getElementById('phone-number').value;
+
+            if(!uid || !phone) {
+                alert('অনুগ্রহ করে Player UID এবং মোবাইল নাম্বার সঠিকভাবে পূরণ করুন।');
+                return;
+            }
+
+            alert(`✅ অর্ডার সফল হয়েছে!
+আপনার গেম আইডি: ${uid}
+আমরা ৫ মিনিটের মধ্যে ভেরিফাই করে ডেলিভারি দিচ্ছি। ধন্যবাদ!`);
+            closeOrderModal();
+        }
+
+        // Admin Simulation Function
+        function simulatePriceChange() {
+            const newWeeklyPrice = prompt("অ্যাডমিন প্যানেল সিমুলেশন:
+Weekly Membership এর নতুন দাম কত দিতে চান?", "150");
+            if (newWeeklyPrice != null && !isNaN(newWeeklyPrice) && newWeeklyPrice !== "") {
+                const select = document.getElementById('monthly-select');
+                select.options[0].text = `Weekly Membership — ৳${newWeeklyPrice}`;
+                select.options[0].value = newWeeklyPrice;
+                updatePrice('monthly');
+                alert(`🎯 অ্যাডমিন ডাটাবেস আপডেট সফল!
+সাইটে লাইভ দাম পরিবর্তন হয়েছে ৳${newWeeklyPrice}`);
+            }
+        }
+    </script>
+</body>
+</html>

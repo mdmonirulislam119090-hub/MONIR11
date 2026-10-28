@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monir TopUp - বিশ্বস্ত ও দ্রুত গেম টপ-আপ</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b111e;
+            --card-bg: #151f32;
+            --accent-blue: #00d2ff;
+            --accent-green: #25d366;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --gradient-blue: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: rgba(21, 31, 50, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 45px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .login-btn {
+            background-color: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--text-main);
+            padding: 8px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: var(--accent-blue);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+        }
+
+        /* Hero Banner Section */
+        .hero-section {
+            background: radial-gradient(circle at center, #1a2a4a 0%, #0b111e 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(67, 100, 247, 0.6);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero-title span {
+            color: var(--accent-blue);
+        }
+
+        .badge-info {
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Features Ribbon */
+        .features-ribbon {
+            background-color: #080d18;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .feature-item i {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+        }
+
+        /* Main Store Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Products Layout */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px rgba(67, 100, 247, 0.2);
+            border-color: rgba(67, 100, 247, 0.4);
+        }
+
+        .product-banner {
+            background: var(--gradient-blue);
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-banner h3 {
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .product-body {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .buy-btn {
+            background-color: #00c6ff;
+            background: linear-gradient(to right, #0072ff, #00c6ff);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Sidebar Widgets */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .widget-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .whatsapp-widget {
+            border-left: 5px solid var(--accent-green);
+            text-align: center;
+        }
+
+        .whatsapp-icon-box {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .widget-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .widget-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--accent-green);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebd54;
+        }
+
+        /* Payment Widget */
+        .payment-methods-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .payment-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .p-bkash { color: #e2136e; border-color: rgba(226, 19, 110, 0.3); }
+        .p-nagad { color: #f34f22; border-color: rgba(243, 79, 34, 0.3); }
+        .p-rocket { color: #8c3494; border-color: rgba(140, 52, 148, 0.3); }
+
+        /* Footer */
+        footer {
+            background-color: #080d18;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="navbar">
+            <div class="logo-area">
+                <!-- SVG Crown Shield Logo Concept for Monir TopUp -->
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 90C50 90 85 70 85 30V15L50 5L15 15V30C15 30 15 70 50 90Z" fill="#1e3a8a" stroke="#00d2ff" stroke-width="4"/>
+                    <path d="M50 20L60 45H85L65 60L72 85L50 70L28 85L35 60L15 45H40L50 20Z" fill="#00d2ff"/>
+                </svg>
+                <span style="font-size: 1.5rem; font-weight: bold; letter-spacing: 1px;">MONIR <span style="color:var(--accent-blue)">TOPUP</span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="#"><i class="fa-solid fa-gamepad"></i> Games</a></li>
+                <li><a href="#"><i class="fa-solid fa-percentage"></i> Offers</a></li>
+                <li><a href="#"><i class="fa-solid fa-headset"></i> Support</a></li>
+                <li><button class="login-btn">LOGIN</button></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1 class="hero-title">বিশ্বস্ত ও দ্রুত <span>গেম টপ-আপ</span></h1>
+            <div class="badge-info">দামে কম, মানে সেরা এবং হোয়াটসঅ্যাপ গ্রুপ</div>
+        </div>
+    </section>
+
+    <!-- Trust Features Ribbon -->
+    <div class="features-ribbon">
+        <div class="features-container">
+            <div class="feature-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>১০০% নিরাপদ</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-bolt"></i>
+                <span>দ্রুত ডেলিভারি</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-headset"></i>
+                <span>২৪/৭ সাপোর্ট</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Storefront -->
+    <main class="main-container">
+        
+        <!-- Left Side: Top-Up Products -->
+        <section class="products-area">
+            <div class="products-grid">
+                
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-banner">
+                        <h3>Weekly Monthly</h3>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-desc">ফ্রি ফায়ার উইকলি এবং মান্থলি মেম্বারশিপ একদম কম দামে এবং ইনস্ট্যান্ট ডেলিভারি।</p>
+                        <button class="buy-btn">Top-Up Now</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-banner" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+                        <h3>Weekly Light</h3>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-desc">বাজেট ফ্রেন্ডলি মেম্বারশিপ প্যাকেজ। আপনার গেম আইডি সুরক্ষিত রেখে টপ-আপ করুন।</p>
+                        <button class="buy-btn" style="background: linear-gradient(to right, #11998e, #38ef7d);">Top-Up Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Right Side: Sidebar Widgets -->
+        <aside class="sidebar">
+            
+            <!-- WhatsApp Community Box -->
+            <div class="widget-card whatsapp-widget">
+                <div class="whatsapp-icon-box">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="widget-title">গিভওয়ে ও সকল অফার</div>
+                <p class="widget-text">নিয়মিত ফ্রি গিভওয়ে এবং বিশেষ ডিসকাউন্ট অফার সম্পর্কে জানতে আমাদের হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন!</p>
+                <a href="#" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> জয়েন করুন
+                </a>
+            </div>
+
+            <!-- Auto Payment Box -->
+            <div class="widget-card">
+                <div class="widget-title"><i class="fa-solid fa-credit-card" style="color:var(--accent-blue)"></i> Auto Payment</div>
+                <p class="widget-text" style="margin-bottom: 10px;">আমাদের ওয়েবসাইটে পাচ্ছেন স্বয়ংক্রিয় পেমেন্ট সুবিধা।</p>
+                <div class="payment-methods-grid">
+                    <div class="payment-item p-bkash">bKash</div>
+                    <div class="payment-item p-nagad">Nagad</div>
+                    <div class="payment-item p-rocket">Rocket</div>
+                </div>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- Footer Area -->
+    <footer>
+        <div class="footer-container">
+            <ul class="footer-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Links</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <p class="copyright">Copyright © Monir TopUp. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monir TopUp - বিশ্বস্ত ও দ্রুত গেম টপ-আপ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts for Bengali and Gaming look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Hind+Siliguri:wght@400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #030b1e;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .gaming-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .bengali-title {
+            font-family: 'Galada', cursive;
+        }
+        .cyber-gradient {
+            background: linear-gradient(135deg, #051330 0%, #022c7a 50%, #0052d4 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel-active {
+            background: rgba(0, 82, 212, 0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid #0052d4;
+            box-shadow: 0 0 15px rgba(0, 82, 212, 0.4);
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 198, 255, 0.6);
+        }
+        .glow-button {
+            box-shadow: 0 0 15px rgba(0, 82, 212, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(0, 198, 255, 0.8);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- ⚡ REAL ADdMIN PANEL BAR (Live Price Editor) ⚡ -->
+    <div class="bg-gradient-to-r from-purple-900 to-indigo-950 border-b border-purple-500/30 text-white px-4 py-2 text-xs md:text-sm flex flex-wrap justify-between items-center gap-2 z-50 sticky top-0">
+        <div class="flex items-center gap-2">
+            <span class="bg-red-600 animate-pulse text-[10px] uppercase font-bold px-2 py-0.5 rounded">Admin Live Control</span>
+            <span>এখানে সরাসরি প্যাকেজের দাম পরিবর্তন করে লাইভ টেস্ট করুন:</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+            <div>
+                <label class="opacity-80 mr-1">Weekly/Monthly:</label>
+                <input type="number" id="admin-wm-price" value="160" class="w-16 bg-black/40 border border-purple-400 rounded px-1.5 py-0.5 text-center text-yellow-400 font-bold" oninput="updateAdminPrices()"> ৳
+            </div>
+            <div>
+                <label class="opacity-80 mr-1">Weekly Light:</label>
+                <input type="number" id="admin-wl-price" value="95" class="w-16 bg-black/40 border border-purple-400 rounded px-1.5 py-0.5 text-center text-yellow-400 font-bold" oninput="updateAdminPrices()"> ৳
+            </div>
+        </div>
+    </div>
+
+    <!-- 📱 PREMIUM NAVIGATION BAR -->
+    <nav class="glass-panel border-t-0 border-x-0 sticky top-9 z-40 px-4 py-3 md:py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="bg-blue-600 p-2 rounded-xl glow-button text-white flex items-center justify-center">
+                    <i class="fa-solid fa-shield-halved text-xl group-hover:rotate-12 transition-transform"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="gaming-font font-black text-lg md:text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 glow-text">MONIR TOPUP</span>
+                    <span class="text-[9px] text-gray-400 tracking-widest uppercase -mt-1 font-bold">Gaming Wallet</span>
+                </div>
+            </a>
+
+            <!-- Menu (Desktop) -->
+            <div class="hidden md:flex items-center gap-8 font-semibold text-gray-300">
+                <a href="#" class="text-blue-400 hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-house text-xs"></i> Home</a>
+                <a href="#games" class="hover:text-blue-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-xs"></i> Games</a>
+                <a href="#offers" class="hover:text-blue-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-tags text-xs"></i> Offers</a>
+                <a href="#support" class="hover:text-blue-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-headset text-xs"></i> Support</a>
+            </div>
+
+            <!-- Login Button -->
+            <div>
+                <button onclick="alert('লগইন প্যানেলটি শীঘ্রই যুক্ত করা হচ্ছে!')" class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white px-5 py-1.5 rounded-xl font-bold text-sm tracking-wide glow-button flex items-center gap-2">
+                    <i class="fa-solid fa-user-astronaut"></i> Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🌆 HERO BANNER SECTION -->
+    <header class="cyber-gradient relative py-12 md:py-20 px-4 border-b border-blue-500/20 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#00f2fe_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-4">
+            <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-400/30 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold text-cyan-400 tracking-wide uppercase">
+                <i class="fa-solid fa-circle-check text-xs animate-pulse"></i> 100% Guaranteed Official Top-Up
+            </div>
+            <h1 class="bengali-title text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-blue-100 to-blue-400 leading-tight drop-shadow-lg py-2">
+                বিশ্বস্ত ও দ্রুত গেম টপ-আপ
+            </h1>
+            <p class="text-sm md:text-lg text-gray-300 max-w-xl mx-auto font-medium">
+                দামে কম, মানে সেরা এবং অফিশিয়াল ইনস্ট্যান্ট অটোমেটিক ডেলিভারি গেমিং ওয়ালেট।
+            </p>
+        </div>
+    </header>
+
+    <!-- 🎀 FEATURE INFO RIBBON -->
+    <section class="bg-[#020714] border-b border-gray-800 py-3.5 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-3 gap-2 text-center text-xs md:text-sm text-gray-300 font-bold">
+            <div class="flex items-center justify-center gap-2 border-r border-gray-800">
+                <i class="fa-solid fa-shield-halved text-emerald-400 text-sm md:text-lg"></i>
+                <span>১০০% নিরাপদ</span>
+            </div>
+            <div class="flex items-center justify-center gap-2 border-r border-gray-800">
+                <i class="fa-solid fa-bolt text-amber-400 text-sm md:text-lg animate-bounce"></i>
+                <span>দ্রুত ডেলিভারি</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+                <i class="fa-solid fa-headset text-cyan-400 text-sm md:text-lg"></i>
+                <span>২৪/৭ সাপোর্ট</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎛️ MAIN LAYOUT (GRID & SIDEBAR) -->
+    <main id="games" class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- 📦 PRODUCT GRID (Left & Center Columns) -->
+        <div class="lg:col-span-2 space-y-8">
+            <h2 class="text-xl font-bold flex items-center gap-2 text-cyan-400 border-b border-gray-800 pb-2">
+                <i class="fa-solid fa-fire"></i> গেম প্যাকেজ সমূহ সিলেক্ট করুন
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1: Weekly Monthly -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 flex flex-col justify-between hover:border-blue-500/40 transition-all p-5 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-gradient-to-r from-amber-500 to-orange-600 text-white text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md">Best Value</span>
+                        <div class="text-right">
+                            <span class="text-xs text-gray-400 block">মূল্য</span>
+                            <span class="text-2xl font-black text-yellow-400 gaming-font" id="display-wm-price">৳১৬০</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-crown text-amber-400"></i> Weekly Monthly Pack
+                        </h3>
+                        <p class="text-xs text-gray-400 mt-1">ফ্রি ফায়ার ইন-গেম সুপার সেভার বান্ডেল অফার।</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">প্যাকেজ ভেরিয়েন্ট বেছে নিন:</label>
+                        <select id="wm-select" class="w-full bg-[#050e22] border border-gray-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500" onchange="calculatePrice()">
+                            <option value="1">1x Weekly Membership (৳160)</option>
+                            <option value="2">2x Weekly Membership (৳320)</option>
+                            <option value="5">1x Monthly Membership (৳800)</option>
+                        </select>
+                    </div>
+                    <button onclick="openOrderModal('Weekly Monthly Pack', document.getElementById('display-wm-price').innerText)" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl transition-all glow-button text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-shopping"></i> Top-Up Now
+                    </button>
+                </div>
+
+                <!-- Card 2: Weekly Light -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 flex flex-col justify-between hover:border-blue-500/40 transition-all p-5 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-[10px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md">Budget</span>
+                        <div class="text-right">
+                            <span class="text-xs text-gray-400 block">মূল্য</span>
+                            <span class="text-2xl font-black text-yellow-400 gaming-font" id="display-wl-price">৳৯৫</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-cyan-400"></i> Weekly Light Pack
+                        </h3>
+                        <p class="text-xs text-gray-400 mt-1">সবচেয়ে কম মূল্যে দ্রুত ডায়মন্ড ক্লেইম অফার।</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">পরিমাণ সিলেক্ট করুন:</label>
+                        <select id="wl-select" class="w-full bg-[#050e22] border border-gray-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500" onchange="calculatePrice()">
+                            <option value="1">1x Weekly Light (৳95)</option>
+                            <option value="2">2x Weekly Light (৳190)</option>
+                            <option value="3">3x Weekly Light (৳285)</option>
+                        </select>
+                    </div>
+                    <button onclick="openOrderModal('Weekly Light Pack', document.getElementById('display-wl-price').innerText)" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl transition-all glow-button text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-shopping"></i> Top-Up Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 側 SIDEBAR (Offer, WhatsApp, Payment Widgets) -->
+        <div class="space-y-6">
+            
+            <!-- WhatsApp & Giveaway Alert -->
+            <div id="offers" class="glass-panel rounded-2xl p-5 border border-amber-500/20 relative overflow-hidden bg-gradient-to-br from-[#051330] to-[#0d1629]">
+                <div class="absolute -right-6 -top-6 text-amber-500/10 text-7xl"><i class="fa-solid fa-gift"></i></div>
+                <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-gift animate-bounce"></i> গিভওয়ে ও সকল অফার!
+                </h3>
+                <p class="text-xs text-gray-300 mt-1.5 leading-relaxed">
+                    আমাদের অফিশিয়াল কাস্টমার এবং মেম্বারদের জন্য প্রতিদিন থাকছে স্পেশাল গিভওয়ে এবং ধামাকা ডিসকাউন্ট। বিস্তারিত জানতে এবং অফার লুফে নিতে আজই গ্রুপে যুক্ত হোন।
+                </p>
+                <a href="https://wa.me/8801700000000" target="_blank" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-950/50">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন!
+                </a>
+            </div>
+
+            <!-- Auto Payment Widget -->
+            <div class="glass-panel rounded-2xl p-5 border border-gray-800 space-y-4">
+                <h3 class="text-sm font-bold text-gray-300 uppercase tracking-wider flex items-center gap-2 border-b border-gray-800 pb-2">
+                    <i class="fa-solid fa-credit-card text-blue-400"></i> Auto Payment Method
+                </h3>
+                
+                <p class="text-xs text-gray-400">অর্ডার করার সময় আপনার পছন্দের ইনস্ট্যান্ট পেমেন্ট গেটওয়ে সিলেক্ট করুন:</p>
+                
+                <div class="grid grid-cols-3 gap-2" id="payment-methods">
+                    <div onclick="selectPayment('bkash')" id="pay-bkash" class="glass-panel-active rounded-xl p-2.5 flex flex-col items-center justify-center cursor-pointer transition-all border text-center group">
+                        <span class="text-xs font-bold text-pink-500 group-hover:scale-105 transition-transform">bKash</span>
+                        <span class="text-[8px] text-gray-400 block mt-0.5">Automated</span>
+                    </div>
+                    <div onclick="selectPayment('nagad')" id="pay-nagad" class="glass-panel rounded-xl p-2.5 flex flex-col items-center justify-center cursor-pointer transition-all border border-gray-800 text-center group">
+                        <span class="text-xs font-bold text-orange-500 group-hover:scale-105 transition-transform">নগদ</span>
+                        <span class="text-[8px] text-gray-400 block mt-0.5">Instant</span>
+                    </div>
+                    <div onclick="selectPayment('rocket')" id="pay-rocket" class="glass-panel rounded-xl p-2.5 flex flex-col items-center justify-center cursor-pointer transition-all border border-gray-800 text-center group">
+                        <span class="text-xs font-bold text-purple-400 group-hover:scale-105 transition-transform">রকেট</span>
+                        <span class="text-[8px] text-gray-400 block mt-0.5">Manual</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 🛍️ POP-UP ORDER MODAL -->
+    <div id="order-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-panel border border-blue-500/30 w-full max-w-md rounded-2xl overflow-hidden shadow-2xl animate-fade-in">
+            <div class="bg-gradient-to-r from-blue-900 to-indigo-950 p-4 border-b border-blue-500/20 flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-white text-base flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-emerald-400"></i> আপনার টপ-আপ কনফার্ম করুন
+                    </h3>
+                    <span id="modal-pack-name" class="text-xs text-cyan-400 font-bold block mt-0.5">Weekly Pack</span>
+                </div>
+                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 w-8 h-8 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="submitOrder(event)" class="p-5 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">প্লেয়ার গেম UID দিন <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-gray-500 text-sm"><i class="fa-solid fa-id-card"></i></span>
+                        <input type="text" id="player-uid" required placeholder="Example: 582910394" class="w-full bg-[#050e22] border border-gray-700 rounded-xl pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500 font-mono">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">আপনার মোবাইল নম্বর <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-gray-500 text-sm"><i class="fa-solid fa-phone"></i></span>
+                        <input type="tel" id="player-phone" required placeholder="01XXXXXXXXX" class="w-full bg-[#050e22] border border-gray-700 rounded-xl pl-9 pr-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
+
+                <div class="bg-blue-500/5 border border-blue-500/20 rounded-xl p-3 flex justify-between items-center">
+                    <div class="text-xs text-gray-400">
+                        <span>নির্বাচিত পেমেন্ট: </span>
+                        <span id="modal-payment-method" class="font-bold text-white uppercase ml-1">bKash</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] text-gray-400 block">সর্বমোট প্রদেয়</span>
+                        <span id="modal-total-price" class="text-lg font-black text-yellow-400 gaming-font">৳১৬০</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold py-3 rounded-xl transition-all glow-button text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-xs"></i> পেমেন্ট সম্পন্ন করুন
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 👣 FOOTER -->
+    <footer id="support" class="bg-[#020612] border-t border-gray-900 py-6 px-4 mt-12 text-center text-xs text-gray-500 space-y-2">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 <span class="text-gray-300 font-bold">Monir TopUp</span>. সর্বস্বত্ব সংরক্ষিত।</p>
+            <div class="flex gap-4 text-gray-400">
+                <a href="#" class="hover:text-blue-400">Home</a>
+                <a href="#" class="hover:text-blue-400">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-400">Terms of Service</a>
+                <a href="https://wa.me/8801700000000" class="hover:text-emerald-400 font-semibold"><i class="fa-brands fa-whatsapp"></i> Live Chat Help</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ⚙️ CUSTOM REAL-TIME JAVASCRIPT LOGIC -->
+    <script>
+        // Global variables for tracking active states
+        let selectedPaymentMethod = 'bkash';
+        let baseWeeklyMonthlyPrice = 160;
+        let baseWeeklyLightPrice = 95;
+
+        // Function to select payment mode dynamic style
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            const methods = ['bkash', 'nagad', 'rocket'];
+            
+            methods.forEach(m => {
+                const element = document.getElementById(`pay-${m}`);
+                if (m === method) {
+                    element.className = "glass-panel-active rounded-xl p-2.5 flex flex-col items-center justify-center cursor-pointer transition-all border text-center group";
+                } else {
+                    element.className = "glass-panel rounded-xl p-2.5 flex flex-col items-center justify-center cursor-pointer transition-all border border-gray-800 text-center group";
+                }
+            });
+        }
+
+        // Live calculation logic based on user interaction
+        function calculatePrice() {
+            // Weekly Monthly calculation
+            const wmMultiplier = parseInt(document.getElementById('wm-select').value);
+            const finalWmPrice = baseWeeklyMonthlyPrice * wmMultiplier;
+            document.getElementById('display-wm-price').innerText = `৳${finalWmPrice}`;
+
+            // Weekly Light calculation
+            const wlMultiplier = parseInt(document.getElementById('wl-select').value);
+            const finalWlPrice = baseWeeklyLightPrice * wlMultiplier;
+            document.getElementById('display-wl-price').innerText = `৳${finalWlPrice}`;
+        }
+
+        // Admin panel core simulation to sync prices instantly
+        function updateAdminPrices() {
+            const adminWm = parseFloat(document.getElementById('admin-wm-price').value) || 0;
+            const adminWl = parseFloat(document.getElementById('admin-wl-price').value) || 0;
+
+            baseWeeklyMonthlyPrice = adminWm;
+            baseWeeklyLightPrice = adminWl;
+
+            // Re-render calculation
+            calculatePrice();
+        }
+
+        // Open Modal overlay logic
+        function openOrderModal(packageName, currentPrice) {
+            document.getElementById('modal-pack-name').innerText = packageName;
+            document.getElementById('modal-total-price').innerText = currentPrice;
+            document.getElementById('modal-payment-method').innerText = selectedPaymentMethod;
+            document.getElementById('order-modal').classList.remove('hidden');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        // Submit form automation simulation
+        function submitOrder(event) {
+            event.preventDefault();
+            const uid = document.getElementById('player-uid').value;
+            const phone = document.getElementById('player-phone').value;
+            const pack = document.getElementById('modal-pack-name').innerText;
+            const price = document.getElementById('modal-total-price').innerText;
+            
+            alert(`🎉 অর্ডার সফলভাবে প্লেস হয়েছে!\n\nপ্যাকেজ: ${pack}\nমূল্য: ${price}\nগেম UID: ${uid}\nমোবাইল নম্বর: ${phone}\nপেমেন্ট গেটওয়ে: ${selectedPaymentMethod.toUpperCase()}\n\n৫ মিনিটের মধ্যে আপনার আইডিতে ডায়মন্ড যুক্ত হয়ে যাবে। ধন্যবাদ!`);
+            closeOrderModal();
+        }
+    </script>
+</body>
+</html>
